@@ -31,7 +31,7 @@ DJANGO_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites'
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
@@ -40,19 +40,23 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "django_filters",
-    "djnago_countries",
+    "django_countries",
     "phonenumber_field",
     "drf_yasg",
     "corsheaders"
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "core_apps.common",
+    "core_apps.users",
+    "core_apps.profiles",
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,15 +96,17 @@ WSGI_APPLICATION = 'authors_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': ROOT_DIR / 'db.sqlite3',
+        'ATOMIC_REQUESTS' : True,
     }
 }
 
-DATABASES = {
-    'default': env.db("DATABASE_URL")
-}
 
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+# DATABASES = {
+#     'default': env.db("DATABASE_URL")
+# }
+
+# DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.Argon2PasswordHasher",
