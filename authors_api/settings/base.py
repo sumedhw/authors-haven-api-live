@@ -1,5 +1,7 @@
-
 from pathlib import Path
+
+
+from os.path import dirname, join
 
 import environ
 
@@ -7,8 +9,13 @@ env = environ.Env()
 
 ROOT_DIR = Path(__name__).resolve().parent.parent.parent
 
+print(Path(__name__).resolve())
+
+print(ROOT_DIR)
+
 APPS_DIR = ROOT_DIR / "core_apps"
 
+print('APPS_DIR', APPS_DIR)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,10 +100,12 @@ WSGI_APPLICATION = 'authors_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+print(join(ROOT_DIR, 'db.sqlite3'))
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ROOT_DIR / 'db.sqlite3',
+        'NAME': join(ROOT_DIR, 'db.sqlite3'),
         'ATOMIC_REQUESTS' : True,
     }
 }
