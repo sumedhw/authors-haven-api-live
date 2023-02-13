@@ -13,6 +13,8 @@ services:
             - media_volume:/app/mediafiles
         expose:
             - "8000"
+        ports:
+            - "8000:8000"
         env_file:
             - ./.envs/.local/.django
             - ./.envs/.local/.postgres
@@ -28,6 +30,8 @@ services:
             context: .
             dockerfile: ./docker/local/postgres/Dockerfile
         container_name: postgres
+        ports:
+            - "5432:5432"
         volumes:
             - local_postgres_data:/var/lib/postgresql/data
             - local_postgres_data_backups:/backups
@@ -43,6 +47,16 @@ services:
             - "8025:8025"
         networks:
             - authors-api-live
+
+networks:
+    authors-api-live:
+        driver: bridge
+
+volumes:
+    local_postgres_data: {}
+    local_postgres_data_backups: {}
+    static_volume:
+    media_volume:
 
 #    redis:
 #        image: redis:6-alpine
@@ -102,12 +116,3 @@ services:
 #        networks:
 #            - authors-api-live
 
-networks:
-    authors-api-live:
-        driver: bridge
-
-volumes:
-    local_postgres_data: {}
-    local_postgres_data_backups: {}
-    static_volume:
-    media_volume:

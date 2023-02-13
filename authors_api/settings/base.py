@@ -89,19 +89,27 @@ WSGI_APPLICATION = 'authors_api.wsgi.application'
 
 print(join(ROOT_DIR, 'db.sqlite3'))
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': join(ROOT_DIR, 'db.sqlite3'),
-        'ATOMIC_REQUESTS': True,
-    }
-}
-
 # DATABASES = {
-#     'default': env.db("DATABASE_URL")
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': join(ROOT_DIR, 'db.sqlite3'),
+#         'ATOMIC_REQUESTS': True,
+#     }
 # }
 
-# DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'authors-live',
+        'USER': 'alphaogilo',
+        'PASSWORD': 'admin123456',
+        'HOST': 'postgres',
+        'PORT': '5432',
+    }
+    #'default': env.db("DATABASE_URL", "postgres://alphaogilo:admin123456@127.0.0.1:5432/authors-live")
+}
+
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.Argon2PasswordHasher",
@@ -208,5 +216,5 @@ LOGGING = {
             "formatter": "app",
         }
     },
-    "root": {"level": "INFO", "handlers": ["console", "file"]},
+    "root": {"level": "INFO", "handlers": ["console"]},
 }

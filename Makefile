@@ -11,7 +11,7 @@ show_logs:
 	docker compose -f local.yml logs
 
 makemigrations:
-	docker compose -f local.yml run --rm api python3 manage.py miakemigrations
+	docker compose -f local.yml run --rm api python3 manage.py makemigrations
 
 migrate:
 	docker compose -f local.yml run --rm api python3 manage.py migrate
