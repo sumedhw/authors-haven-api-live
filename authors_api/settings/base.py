@@ -182,6 +182,13 @@ CORS_URLS_REGEX = r"^/api/.*$"
 
 AUTH_USER_MODEL = "users.User"
 
+CELERY_BROKER_URL = env("CELERY_BROKER")
+CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
+CELERY_TIMEZONE = "UTC"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
 
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "core_apps.common.exceptions.common_exception_handler",
