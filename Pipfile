@@ -28,6 +28,9 @@ django-celery-email = "==3.0.0"
 argh = "==0.26.2"
 pyyaml = "==6.0"
 watchdog = "==2.1.6"
+djoser = "==2.1.0"
+djangorestframework-simplejwt = "==4.8.0"
+pyjwt = "==2.1.0"
 
 [dev-packages]
 
